@@ -1,3 +1,7 @@
+/* Javascript rewrite of the java applet originally written by Jon A. Maxwell
+   Naveed Ahmed
+ */
+
 function CKeyStats(name, keymap){
     this.distanceTotal = 0;
    	this.sameHandTotal = 0;

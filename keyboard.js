@@ -1,3 +1,7 @@
+/* Javascript rewrite of the java applet originally written by Jon A. Maxwell
+   Naveed Ahmed
+ */
+
 function Array2D(x, y)
 {
     var array2D = new Array(x);

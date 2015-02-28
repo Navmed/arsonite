@@ -9,11 +9,26 @@
     <script src="numeral.js"></script>
     <style>
         body{font-family: "Segoe UI", "Century Gothic", "Helvetica";}
-        h2{margin: 2px 0 2px}
+        h1{text-align: center}
+        #arsonitelayoutimg{text-align: center}
+        h3{margin: 2px 0 2px}
         .layout{margin: 8px 4px 20px}
     </style>
 </head>
 <body>
+<h1>Arsonite</h1>
+<img id="arsonitelayoutimg" src="arsonitelayout.png" alt="Arsonite Layout"/>
+<h2>
+Arsonite is an efficient keyboard layout with minimal changes from QWERTY and almost all
+changes are symmetrical swaps, making it very easy to learn.
+</h2>
+
+<div id="downloads">
+    <span>Windows</span>
+    <span>Linux</span>
+</div>
+
+
 <textarea name="text" id="text" cols="30" rows="10">
     "Attitude"
 
@@ -54,7 +69,7 @@
 
 <div id="layouts-all">
     <div id="layout-template" class="layout" style="display: none">
-        <h2></h2>
+        <h3></h3>
         <div>
             <span>Distance</span>
             <span class="distance"></span>
@@ -118,24 +133,33 @@
     // Qwerty already added as a starting point
 
     K.dvorakMap = [
-            "`1234567890[]\\"  ,  "~!@#$%^&*(){}",
-      		" ',.pyfgcrl/=\\"  ,  " \"<>PYFGCRL?+|",
-      		" aoeuidhtns-\n"   ,  " AOEUIDHTNS_\n",
-      		"  ;qjkxbmwvz"     ,  "  :QJKXBMWVZ",
-      		"  "               ,  ""
+        "`1234567890[]\\"  ,  "~!@#$%^&*(){}",
+        " ',.pyfgcrl/=\\"  ,  " \"<>PYFGCRL?+|",
+        " aoeuidhtns-\n"   ,  " AOEUIDHTNS_\n",
+        "  ;qjkxbmwvz"     ,  "  :QJKXBMWVZ",
+        "  "               ,  ""
     ];
 
     K.arsoniteMap = [
-            "`1234567890-="  ,  "~!@#$%^&*()_+",
-      		" qwdf;yuklp[]\\",  " QWDF:YUKLP{}",
-      		" asetghnior'\n" ,  " ASETGHNIOR\"\n",
-      		"  zxcvbjm,./"   ,  "  ZXCVBJM<>?",
-      		"  "             ,  ""
+        "`1234567890-="  ,  "~!@#$%^&*()_+",
+        " qwdf;yuklp[]\\",  " QWDF:YUKLP{}|",
+        " asetghnior'\n" ,  " ASETGHNIOR\"\n",
+        "  zxcvbjm,./"   ,  "  ZXCVBJM<>?",
+        "  "             ,  ""
+    ];
+
+    K.colemakMap = [
+        "`1234567890-="  ,  "~!@#$%^&*()_+",
+  		" qwfpgjluy;[]\\",  " QWFPGJLUY:{}|",
+  		" arstdhneio'\n" ,  " ARSTDHNEIO\"\n",
+  		"  zxcvbkm,./"   ,  "  ZXCVBKM<>?",
+  		"  "             ,  ""
     ];
 
     K.AddLayout("qwerty");
     K.AddLayout("dvorak", K.dvorakMap);
     K.AddLayout("arsonite", K.arsoniteMap);
+    K.AddLayout("colemak", K.colemakMap);
 
     $("#process").click(function(){
         var text = $("#text").val();
