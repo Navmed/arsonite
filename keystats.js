@@ -7,6 +7,7 @@ function CKeyStats(name, keymap){
    	this.sameHandTotal = 0;
    	this.sameFingerTotal = 0;
    	this.keysTotal = 0;
+    this.learningCost = 0;
 
     this.rowTotal = [];// = new int[Keyboard.ROWS];
     this.lhTotal = []; //= new int[5];  //fingers on lh
@@ -22,6 +23,9 @@ CKeyStats.prototype.calculate = function(text){
 	// reset counters
     var keyboard = this.keyboard;
 	this.distanceTotal = this.sameHandTotal = this.sameFingerTotal = this.keysTotal = 0;
+    if(this.name != "qwerty")
+        this.learningCost = keyboard.calculateLearningCost();
+
     var i=0;
 	for (i=0; i < keyboard.ROWS; i++)
     {
@@ -103,6 +107,7 @@ CKeyStats.prototype.displayStats = function(resultsDiv) {
         var i=0;
 
 		resultsDiv.find(".totalKeys").text(this.keysTotal);
+        resultsDiv.find(".learning-cost").text(this.learningCost);
 
 		// row percents
 		//   percent of non-space keys

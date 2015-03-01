@@ -22,6 +22,13 @@
 Arsonite is an efficient keyboard layout with minimal changes from QWERTY and almost all
 changes are symmetrical swaps, making it very easy to learn.
 </h2>
+<h3>Design Goals</h3>
+<ul>
+    <li><strong>Efficency:</strong> Keep most frequently used letters on the home row</li>
+    <li><strong>Minimal Changes:</strong> Change as less as possible, to make the layout easy to learn and minimize shortcut changes</li>
+    <li><strong>Easy learning:</strong> Swap keys, instead of moving them around. if you make a
+        mistake, all you have to do is use the key that you got to get the key you want. </li>
+</ul>
 
 <div id="downloads">
     <span>Windows</span>
@@ -70,6 +77,10 @@ changes are symmetrical swaps, making it very easy to learn.
 <div id="layouts-all">
     <div id="layout-template" class="layout" style="display: none">
         <h3></h3>
+        <div>
+            <span>Learning Cost</span>
+            <span class="learning-cost"></span>
+        </div>
         <div>
             <span>Distance</span>
             <span class="distance"></span>
@@ -122,12 +133,21 @@ changes are symmetrical swaps, making it very easy to learn.
     K.Stats = [];
     K.AddLayout = function(layoutName, keymap){
         var layout = $("#layout-template").clone().attr("id",layoutName);
-        layout.find("h2").text(layoutName);
+        layout.find("h3").text(layoutName);
         layout.show();
         layout.appendTo($("#layouts-all"));
 
         var stats = new CKeyStats(layoutName, keymap);
         K.Stats.push(stats);
+    };
+
+    K.CalculateAllCosts = function(){
+        var text = $("#text").val();
+
+        K.Stats.forEach(function(e, i, a){
+            e.calculate(text);
+            e.displayStats($("#" + e.name));
+        });
     };
 
     // Qwerty already added as a starting point
@@ -157,17 +177,13 @@ changes are symmetrical swaps, making it very easy to learn.
     ];
 
     K.AddLayout("qwerty");
-    K.AddLayout("dvorak", K.dvorakMap);
     K.AddLayout("arsonite", K.arsoniteMap);
+    K.AddLayout("dvorak", K.dvorakMap);
     K.AddLayout("colemak", K.colemakMap);
+    K.CalculateAllCosts();
 
     $("#process").click(function(){
-        var text = $("#text").val();
-
-        K.Stats.forEach(function(e, i, a){
-            e.calculate(text);
-            e.displayStats($("#" + e.name));
-        });
+        K.CalculateAllCosts();
     });
 
 

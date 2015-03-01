@@ -43,13 +43,15 @@ function CKeyboard(keymap){
    	this.ROWS = 5;
    	this.COLUMNS = 15;
 
-    this.defaultKeyboard =
+    this.learningCost = 0;
+
+    this.qwertyKeymap =
    		[	// lowercase, uppercase
-   		"`1234567890-=\\",   "~!@#$%^&*()_+|" ,
-   		" qwertyuiop[]"  ,   " QWERTYUIOP{}"  ,
-   		" asdfghjkl;'\n" ,   " ASDFGHJKL:\"\n",
-   		"  zxcvbnm,./"   ,   "  ZXCVBNM<>?"   ,
-   		      "  "       ,         ""
+   		"`1234567890-=",   "~!@#$%^&*()_+" ,
+   		" qwertyuiop[]\\", " QWERTYUIOP{}|"  ,
+   		" asdfghjkl;'\n" , " ASDFGHJKL:\"\n",
+   		"  zxcvbnm,./"   , "  ZXCVBNM<>?"   ,
+   		      "  "       , ""
    		];
 
     this.defaultFingering =
@@ -61,6 +63,7 @@ function CKeyboard(keymap){
    		      " 8"
    		];
 
+    this.keymap = this.qwertyKeymap;
     this.charToIndex = {};
     this.keyArea = Array2D(this.ROWS, this.COLUMNS);// area of image
     this.keyFinger = Array2D(this.ROWS, this.COLUMNS);
@@ -133,18 +136,42 @@ CKeyboard.prototype.isSettable = function(row, col) {
 };
 
 CKeyboard.prototype.setDefaultKeys = function() {
-	for (var i=0; i < this.defaultKeyboard.length; i+=2) {
-        this.setRow(i/2,this.LOWERCASE, this.defaultKeyboard[i]);
-        this.setRow(i/2,this.UPPERCASE, this.defaultKeyboard[i+1]);
+	for (var i=0; i < this.qwertyKeymap.length; i+=2) {
+        this.setRow(i/2,this.LOWERCASE, this.qwertyKeymap[i]);
+        this.setRow(i/2,this.UPPERCASE, this.qwertyKeymap[i+1]);
 	}
 };
 
 CKeyboard.prototype.setKeys = function(keymap){
+    this.keymap = keymap;
     for (var i=0; i < keymap.length; i+=2) {
          this.setRow(i/2, this.LOWERCASE, keymap[i]);
          this.setRow(i/2, this.UPPERCASE, keymap[i+1]);
      }
 };
+
+CKeyboard.prototype.calculateLearningCost = function(){
+    this.learningCost = 0;
+    var keymap = this.keymap;
+    var qwertyKeyMap = this.qwertyKeymap;
+    for(var i=0; i<qwertyKeyMap.length; i+=2){
+        var qrow = qwertyKeyMap[i];
+        for(var j=0; j<qrow.length; j++){
+            var q = qrow[j];
+            if(keymap[i][j] != q){
+                // Check for swap
+                var pos = this.locate(q);
+                if(keymap[pos.y*2][pos.x] == q && this.qwertyKeymap[pos.y*2][pos.x] == keymap[i][j]){    // swapped
+                    this.learningCost++;
+                }else{
+                    this.learningCost+=4;
+                }
+            }
+        }
+    }
+
+    return this.learningCost;
+}
 
 CKeyboard.prototype.setupFingers = function() {
 	var i=0;
