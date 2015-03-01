@@ -2,40 +2,67 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Arsonite: An efficient, easy to learn keyboard layout</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
     <script src="jquery-2.1.3.js"></script>
     <script src="keyboard.js"></script>
     <script src="keystats.js"></script>
     <script src="numeral.js"></script>
     <style>
-        body{font-family: "Segoe UI", "Century Gothic", "Helvetica";}
-        h1{text-align: center}
-        #arsonitelayoutimg{text-align: center}
-        h3{margin: 2px 0 2px}
-        .layout{margin: 8px 4px 20px}
+        body { font : 300 13pt Lato,"Helvetica"; color : #555 }
+        h1,h2,h3,h4{font-weight : 400;}
+        h1 { font-size: 2.7em; text-align : center; }
+        h3 { font-size : 1.2em; margin : 3px 0 }
+        h4 { font-size : 1.1em; margin : 2px 0 2px }
+        ul { margin : 8px 0 }
+
+        #div-img-layout { width : 800px; margin : 32px auto }
+        #main { max-width : 1020px; margin : 0 auto }
+        #arsonitelayoutimg { text-align : center }
+
+        .layout { margin : 8px 4px 20px }
+        #downloads{margin: 20px auto; width: 500px}
+        #downloads > a { background : orange; padding : 2px 20px 3px; color : black; text-decoration : none; margin : 0 8px }
+        #downloads > a:first-child{margin-right: 50px}
+        #performance { margin : 26px 0 0; position: relative }
+        #text{border: 1px solid #ccc; background: #eee; padding: 8px; width: 100%}
+        #process{background: orange; border: 1px orange; padding: 2px 8px 3px; font: 300 12pt Lato; position: absolute; top: 197px; right: 0}
     </style>
 </head>
 <body>
-<h1>Arsonite</h1>
-<img id="arsonitelayoutimg" src="arsonitelayout.png" alt="Arsonite Layout"/>
-<h2>
-Arsonite is an efficient keyboard layout with minimal changes from QWERTY and almost all
-changes are symmetrical swaps, making it very easy to learn.
-</h2>
-<h3>Design Goals</h3>
-<ul>
-    <li><strong>Efficency:</strong> Keep most frequently used letters on the home row</li>
-    <li><strong>Minimal Changes:</strong> Change as less as possible, to make the layout easy to learn and minimize shortcut changes</li>
-    <li><strong>Easy learning:</strong> Swap keys, instead of moving them around. if you make a
-        mistake, all you have to do is use the key that you got to get the key you want. </li>
-</ul>
+<div id="main">
+    <h1>ARSONITE</h1>
 
-<div id="downloads">
-    <span>Windows</span>
-    <span>Linux</span>
-</div>
+    <h2>
+        Arsonite is an efficient keyboard layout with minimal changes from QWERTY. All changes are symmetrical swaps,
+        making it very easy to learn.
+    </h2>
 
+    <div id="div-img-layout">
+        <img id="arsonitelayoutimg" src="arsonitelayout.png" alt="Arsonite Layout"/>
+    </div>
 
+    <div id="design-goals">
+        <h3>Design Goals</h3>
+        <ul>
+            <li><strong>Efficency:</strong> Keep most frequently used letters on the home row</li>
+            <li><strong>Minimal Changes:</strong> Change as less as possible from QWERTY, to make the layout easy to
+                learn and
+                minimize shortcut changes
+            </li>
+            <li><strong>Easy learning:</strong> Swap keys, instead of moving them around. if you make a
+                mistake, all you have to do is use the key that you got to get the key you want.
+            </li>
+        </ul>
+    </div>
+
+    <div id="downloads">
+        <a href="#">Download for Windows</a>
+        <a href="#">Download for Linux</a>
+    </div>
+
+    <div id="performance">
+        <h3>Performance</h3>
 <textarea name="text" id="text" cols="30" rows="10">
     "Attitude"
 
@@ -72,68 +99,69 @@ changes are symmetrical swaps, making it very easy to learn.
 
     Try it and see.
 </textarea>
-<button id="process">Process</button>
+        <button id="process">Process</button>
 
-<div id="layouts-all">
-    <div id="layout-template" class="layout" style="display: none">
-        <h3></h3>
-        <div>
-            <span>Learning Cost</span>
-            <span class="learning-cost"></span>
-        </div>
-        <div>
-            <span>Distance</span>
-            <span class="distance"></span>
-        </div>
-        <div>
-            <span>Same Hand</span>
-            <span class="sameHand"></span>
-        </div>
-        <div>
-            <span>Same Finger</span>
-            <span class="sameFinger"></span>
-        </div>
-        <div>
-            <span>Total Keys</span>
-            <span class="totalKeys"></span>
-        </div>
+        <div id="layouts-all">
+            <div id="layout-template" class="layout" style="display: none">
+                <h4></h4>
 
-        <div>
-            <span>Number Row</span>
-            <span class="row0"></span>
-        </div>
-        <div>
-            <span>Top Row</span>
-            <span class="row1"></span>
-        </div>
-        <div>
-            <span>Home Row</span>
-            <span class="row2"></span>
-        </div>
-        <div>
-            <span>Bottom Row</span>
-            <span class="row3"></span>
-        </div>
+                <div>
+                    <span>Learning Cost</span>
+                    <span class="learning-cost"></span>
+                </div>
+                <div>
+                    <span>Distance</span>
+                    <span class="distance"></span>
+                </div>
+                <div>
+                    <span>Same Hand</span>
+                    <span class="sameHand"></span>
+                </div>
+                <div>
+                    <span>Same Finger</span>
+                    <span class="sameFinger"></span>
+                </div>
+                <div>
+                    <span>Total Keys</span>
+                    <span class="totalKeys"></span>
+                </div>
 
-        <div>
-            <span>Fingers</span>
-            <span class="fingers"></span>
-        </div>
+                <div>
+                    <span>Number Row</span>
+                    <span class="row0"></span>
+                </div>
+                <div>
+                    <span>Top Row</span>
+                    <span class="row1"></span>
+                </div>
+                <div>
+                    <span>Home Row</span>
+                    <span class="row2"></span>
+                </div>
+                <div>
+                    <span>Bottom Row</span>
+                    <span class="row3"></span>
+                </div>
 
+                <div>
+                    <span>Fingers</span>
+                    <span class="fingers"></span>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
-
-
 
 </body>
 
 <script>
-    var K = K||{};
+    var K = K || {};
 
     K.Stats = [];
-    K.AddLayout = function(layoutName, keymap){
-        var layout = $("#layout-template").clone().attr("id",layoutName);
-        layout.find("h3").text(layoutName);
+    K.AddLayout = function (layoutName, keymap) {
+        var layout = $("#layout-template").clone().attr("id", layoutName);
+        layout.find("h4").text(layoutName);
         layout.show();
         layout.appendTo($("#layouts-all"));
 
@@ -141,10 +169,10 @@ changes are symmetrical swaps, making it very easy to learn.
         K.Stats.push(stats);
     };
 
-    K.CalculateAllCosts = function(){
+    K.CalculateAllCosts = function () {
         var text = $("#text").val();
 
-        K.Stats.forEach(function(e, i, a){
+        K.Stats.forEach(function (e, i, a) {
             e.calculate(text);
             e.displayStats($("#" + e.name));
         });
@@ -153,27 +181,27 @@ changes are symmetrical swaps, making it very easy to learn.
     // Qwerty already added as a starting point
 
     K.dvorakMap = [
-        "`1234567890[]\\"  ,  "~!@#$%^&*(){}",
-        " ',.pyfgcrl/=\\"  ,  " \"<>PYFGCRL?+|",
-        " aoeuidhtns-\n"   ,  " AOEUIDHTNS_\n",
-        "  ;qjkxbmwvz"     ,  "  :QJKXBMWVZ",
-        "  "               ,  ""
+        "`1234567890[]\\", "~!@#$%^&*(){}",
+        " ',.pyfgcrl/=\\", " \"<>PYFGCRL?+|",
+        " aoeuidhtns-\n", " AOEUIDHTNS_\n",
+        "  ;qjkxbmwvz", "  :QJKXBMWVZ",
+        "  ", ""
     ];
 
     K.arsoniteMap = [
-        "`1234567890-="  ,  "~!@#$%^&*()_+",
-        " qwdf;yuklp[]\\",  " QWDF:YUKLP{}|",
-        " asetghnior'\n" ,  " ASETGHNIOR\"\n",
-        "  zxcvbjm,./"   ,  "  ZXCVBJM<>?",
-        "  "             ,  ""
+        "`1234567890-=", "~!@#$%^&*()_+",
+        " qwd;fyuklp[]\\", " QWD:FYUKLP{}|",
+        " asetghnior'\n", " ASETGHNIOR\"\n",
+        "  zxcvbjm,./", "  ZXCVBJM<>?",
+        "  ", ""
     ];
 
     K.colemakMap = [
-        "`1234567890-="  ,  "~!@#$%^&*()_+",
-  		" qwfpgjluy;[]\\",  " QWFPGJLUY:{}|",
-  		" arstdhneio'\n" ,  " ARSTDHNEIO\"\n",
-  		"  zxcvbkm,./"   ,  "  ZXCVBKM<>?",
-  		"  "             ,  ""
+        "`1234567890-=", "~!@#$%^&*()_+",
+        " qwfpgjluy;[]\\", " QWFPGJLUY:{}|",
+        " arstdhneio'\n", " ARSTDHNEIO\"\n",
+        "  zxcvbkm,./", "  ZXCVBKM<>?",
+        "  ", ""
     ];
 
     K.AddLayout("qwerty");
@@ -182,7 +210,7 @@ changes are symmetrical swaps, making it very easy to learn.
     K.AddLayout("colemak", K.colemakMap);
     K.CalculateAllCosts();
 
-    $("#process").click(function(){
+    $("#process").click(function () {
         K.CalculateAllCosts();
     });
 
