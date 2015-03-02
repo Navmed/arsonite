@@ -12,6 +12,7 @@
         body { font : 300 13pt Lato,"Helvetica"; color : #555 }
         h1,h2,h3,h4{font-weight : 400;}
         h1 { font-size: 2.7em; text-align : center; }
+        h2 {  text-align: center; max-width: 880px;}
         h3 { font-size : 1.2em; margin : 3px 0 }
         h4 { font-size : 1.1em; margin : 2px 0 2px }
         ul { margin : 8px 0 }
@@ -19,14 +20,20 @@
         #div-img-layout { width : 800px; margin : 32px auto }
         #main { max-width : 1020px; margin : 0 auto }
         #arsonitelayoutimg { text-align : center }
-
+        #design-goals h3{line-height: 1.7em}
+        #design-goals li{line-height: 1.7em}
         .layout { margin : 8px 4px 20px }
         #downloads{margin: 20px auto; width: 500px}
         #downloads > a { background : orange; padding : 2px 20px 3px; color : black; text-decoration : none; margin : 0 8px }
         #downloads > a:first-child{margin-right: 50px}
         #performance { margin : 26px 0 0; position: relative }
-        #text{border: 1px solid #ccc; background: #eee; padding: 8px; width: 100%}
-        #process{background: orange; border: 1px orange; padding: 2px 8px 3px; font: 300 12pt Lato; position: absolute; top: 197px; right: 0}
+        #perf-line {display: table-row}
+        #perf-line div.center{text-align: center; width: 100%}
+        #perf-line small{}
+        #perf-line div{display: table-cell}
+        #process{background: orange; border: 1px orange; padding: 2px 8px 3px; font: 300 12pt Lato; display: table-cell; text-align: right}
+
+        #text{border: 1px solid #ccc; background: #eee; padding: 8px; width: 98%; font-family: consolas, monaco, inconsolata, monospace}
     </style>
 </head>
 <body>
@@ -62,7 +69,11 @@
     </div>
 
     <div id="performance">
-        <h3>Performance</h3>
+        <div id="perf-line">
+            <div><h3>Performance</h3></div>
+            <div class="center"><small>Enter/paste sample text here to test the performance of the layouts</small></div>
+            <div><button id="process">Process</button></div>
+        </div>
 <textarea name="text" id="text" cols="30" rows="10">
     "Attitude"
 
@@ -99,7 +110,7 @@
 
     Try it and see.
 </textarea>
-        <button id="process">Process</button>
+
 
         <div id="layouts-all">
             <div id="layout-template" class="layout" style="display: none">
